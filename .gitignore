@@ -72,7 +72,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
- projbackend/package-lock.json/
+ 
 
 # TypeScript v1 declaration files
 typings/
