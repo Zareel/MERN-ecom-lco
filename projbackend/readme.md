@@ -181,3 +181,55 @@ const categorySchema = new mongoose.Schema(
 
 module.exports = mongoose.model("Category", categorySchema);
 ```
+
+## create productSchema
+
+```js
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema; //pull out ObjectId from mongoose.Schema to link productSchema to categorySchema
+
+const productSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      maxLength: 32,
+    },
+    description: {
+      type: String,
+      trim: true,
+      required: true,
+      maxLength: 1000,
+    },
+    price: {
+      tipe: Number,
+      trim: true,
+      required: true,
+      maxLength: 32,
+    },
+    // every single products belong to some category. inorder to link produects to category
+    category: {
+      type: ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    stock: {
+      type: Number,
+    },
+    sold: {
+      type: Number,
+      default: 0,
+    },
+    photos: {
+      data: Buffer,
+      contentType: String,
+    },
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Product", productSchema);
+
+``;
+```
