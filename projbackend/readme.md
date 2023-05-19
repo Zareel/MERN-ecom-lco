@@ -284,3 +284,21 @@ const Order = mongoose.model("Order", orderSchema);
 
 module.exports = { Order, productsInTheCart };
 ```
+
+# Database connectivity
+
+## 01Mongodb connection and other db talk
+
+```js
+mongoose
+  .connect("mongodb://127.0.0.1:27017/tshirt", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true, // help us to keep our database connection alive
+    useCreateIndex: true,
+  })
+  .then(() => {
+    console.log("db connected");
+  });
+```
+
+## 02Environment variable in process
