@@ -301,4 +301,35 @@ mongoose
   });
 ```
 
-## 02Environment variable in process
+# Middleware and initial routes
+
+## 01What is a middleware?
+
+- Middleware is something that comes in between
+- once the request comes fist need to check whether is logged in then check the role of the user
+- these checking is actually done by middlewares
+- and finally you want to pass on a response
+
+- [body-parser](https://www.npmjs.com/package/body-parser)
+- it handles the values that are taken from the frontend
+
+-[cookie-parser](https://www.npmjs.com/package/cookie-parser)
+
+- to take something from the cookie or to set something to the cookie
+
+- [cors](https://www.npmjs.com/package/cors)
+- Cross Origin Resource sharing
+- cors is a nodejs package for providing a Connect/experess middleware that can be used to enable cors with various options
+
+- `app.js`
+
+```js
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+
+//middlewares
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors());
+```
