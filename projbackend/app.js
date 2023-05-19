@@ -1,15 +1,17 @@
-const dotenv = require("dotenv");
-const express = require("express");
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
+
 const app = express();
-const PORT = 3000;
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
 
 //configure dotenv
 dotenv.config();
 
+//db connection
 mongoose
   .connect(process.env.DATABSE, {
     useNewUrlParser: true,
@@ -25,32 +27,15 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
-const port = process.env.PORT || 3000;
+//my routes
+app.use("/api/v1/auth", authRoutes);
 
+//port
+const PORT = process.env.PORT || 3000;
+
+// starting a server
 app.get("/", (req, res) => {
   res.send(`<h1>This is homepage</h1>`);
-});
-// ====================================================================
-const isAdmin = (req, res) => {
-  console.log("isAdmin is running");
-};
-const admin = (req, res) => {
-  return res.send("This is admin dashboard");
-};
-app.get("/admin", isAdmin, admin);
-// ========================================================================
-
-const isLoggedIn = (req, res) => {
-  console.log("logged in 😃");
-};
-const login = (req, res) => {
-  return res.send("You are logged in");
-};
-app.get("/login", isLoggedIn, login);
-//========================================================================
-
-app.get("/signout", (req, res) => {
-  res.send(`You are singed out`);
 });
 
 app.listen(PORT, (req, res) => {
