@@ -358,3 +358,9 @@ router.get("/signout", signout);
 
 export default router;
 ```
+
+## Studio T3 (Robo Mongo)
+
+- is an amazing GUI and IDE client for mongodb that help us in speed up tasks like query building, data exploration, import/ export code generation. Studio T3 Free allows managing mongodb data by inputing new as well as viewing, querying and computing the existing data items
+
+## Creating route for usr signup
