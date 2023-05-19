@@ -335,3 +335,26 @@ app.use(cors());
 ```
 
 ## Router in express
+
+- `authController.js`
+
+```js
+export const signout = (req, res) => {
+  res.json({
+    message: "user has signed out",
+  });
+};
+```
+
+- `authRoutes`
+
+```js
+import express from "express";
+import { signout } from "../controllers/authController.js";
+
+const router = express.Router();
+
+router.get("/signout", signout);
+
+export default router;
+```

@@ -1,9 +1,8 @@
 import express from "express";
+import { signout } from "../controllers/authController.js";
 
 const router = express.Router();
 
-router.get("/signout", (req, res) => {
-  res.send("user signout");
-});
+router.get("/signout", signout);
 
 export default router;
