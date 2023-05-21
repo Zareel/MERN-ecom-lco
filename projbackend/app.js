@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import config from "./config/index.js";
 
 const app = express();
 
@@ -31,7 +32,7 @@ app.use(cors());
 app.use("/api/v1/auth", authRoutes);
 
 //port
-const PORT = process.env.PORT || 3000;
+const PORT = config.PORT;
 
 // starting a server
 app.get("/", (req, res) => {
