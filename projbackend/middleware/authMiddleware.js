@@ -27,7 +27,37 @@ export const isLoggedIn = async (req, res, next) => {
   }
 };
 
+export const autherize =
+  (...requiredRoles) =>
+  async (req, res, next) => {
+    try {
+      if (!requiredRoles.includes(req.user.role)) {
+        res.send(error, "You are not autherized to access this resource");
+      }
+    } catch (error) {
+      res.status(401).json({
+        success: false,
+        message: "Error in autherize",
+      });
+    }
+  };
+
 export const isAdmin = async (req, res, next) => {
-  console.log("isAdmin is running");
-  next();
+  try {
+    const user = await User.findById(req.user._id);
+    if (user.role !== config.ADMIN) {
+      return res.status(401).json({
+        success: false,
+        message: "Unautherized access",
+      });
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      success: false,
+      message: "Error in admin middleware",
+    });
+  }
 };

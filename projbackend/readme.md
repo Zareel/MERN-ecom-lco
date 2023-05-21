@@ -422,3 +422,8 @@ router.get("/testroute", isLoggedIn, (req, res) => {
   res.send("A protected route");
 });
 ```
+
+## middleware
+
+- autherize
+- isAdmin
